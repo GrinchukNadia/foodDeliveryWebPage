@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -5,25 +7,32 @@
 }
 body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+.wrapper{
+    max-width: 1800px;
+    margin: 0 auto;
 }
 header{
-    height: 400px;
+    background: rgb(255,255,255);
+    height: 100vh;
+    background: linear-gradient(180deg, rgb(236, 236, 236) 60%,  tomato 30%);
+    // height: 400px;
     margin: 0;
     padding: 0;
     
     nav{
-        height: 80px;
         width: 100%;
         display: flex;
         justify-content: space-between;
+        padding-top: 10px;
 
         .logo {
             align-items: center;
-            img{
-                width: 60px;
-                margin-top: 10px;
-                margin-left: 30px;
-            }
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            margin-top: 15px;
+            margin-left: 30px;
         }
 
         ul{
@@ -31,8 +40,13 @@ header{
             align-items: center;
             li{
                 padding-left: 20px;
+                padding-bottom: 6px;
                 font-size: 22px;
                 cursor: pointer;
+                border-bottom: 1px solid;
+                &:last-child{
+                    padding-right: 20px;
+                }
             }
         }
 
@@ -40,20 +54,74 @@ header{
             height: 100%;
             top: 50%;
             button{
-                margin-top: 20px;
+                margin-top: 12px;
                 margin-right: 30px;
-                padding: 10px 25px;
+                padding: 10px 34px;
                 border: none;
                 text-transform: uppercase;
                 font-weight: bold;
-                background-color:transparent;
-                border: 2px solid rgb(153, 153, 153);
+                font-size: 17px;
+                background-color: transparent;
+                border: 1px solid rgb(150, 150, 150);
+                // box-shadow: 2px 2px 12px 4px #ffffffd2;
+                color: #000000;
+                font-family: 'Montserrat', sans-serif;
             }
         }
     }
+    .header_slider{
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 55px;
+        box-shadow: 2px 2px 12px 4px rgba(83, 33, 24, 0.11);
+        
+        .menu_slide{
+            display: flex;
+            background-color: #fff;
+            height: 570px;
+            .slider_img {
+                width: 75%;
+                // border: 2px solid red;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
     
+            }
+            .slide_description{
+                padding: 30px 40px;
+                // width: 40%;
+                .slide_title{
+                    text-align: center;
+                    width: 100%;
+                    padding: 20px 0;
+                    margin-bottom: 20px;
+                    font-weight: bold;
+                    font-size: 22px;
+                    
+                }
+                .slide_item{
+                    padding: 6px 16px 40px;
+                    border-left: 1px solid;
+                    cursor: pointer;
+                    &:last-child{
+                        padding: 0px 16px 6px;
+                    }
+                    
+                }
+                .slide_active{
+                    font-size: larger;
+                    text-shadow: 1px 1px 1px rgb(182, 182, 182);
+                }
+            }
+
+        }
+    }
 }
+
 main{
     height: 300px;
-    background-color: tomato;
+    // background-color: tomato;
 }
