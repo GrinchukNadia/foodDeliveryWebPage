@@ -20,7 +20,7 @@
                     <li>Контакты</li>
                 </ul>
                 <div class="contact_us">
-                    <button>Написать нам</button>
+                    <button class="main_btn"  data-modal >Написать нам</button>
                 </div>
             </nav>
             <div class="header_slider">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="slide_description">
                         <div class="slide_title">
-                            Выберите вариант
+                            Варианты меню:
                         </div>
                         <div class="slide_header">
                             <div class="slide_item slide_active">Снижение веса</div>
@@ -57,7 +57,7 @@
                 <div class="salle__img">
                     <img src="img/case3.jpg" alt="">
                     <div class="call-to-action">Твой путь к идеальной фигуре</div>
-                    <button>Заказать</button>
+                    <button data-modal id="salle_btn" class="main_btn">Заказать</button>
                 </div>
                 <div class="salle__timer">
                     <div class="salle__timer-item ">
@@ -77,6 +77,43 @@
                         <div>секунд</div>
                     </div>
                     
+                </div>
+            </div>
+        </div>
+
+        <div class="menu_items">
+            <div class="wrapper">
+                <div class="menu_items-inner">
+                    <!-- <div class="card_menu">
+                        <img src="img/menu1.jpg" alt="">
+                        <div class="card_option card_title">Снижение веса</div>
+                        <div class="card_option card_description">Диета сбалансирована и эффективна, главный ее результат – изменений пищевых привычек человека и нормализация метаболизма. Меню на неделю поможет разобраться в данной системе питания.</div>
+                        <div class="card_option card_divider"></div>
+                        <div class="card_option card_price">
+                            <div class="inner_price">Цена:</div>
+                            <div class="inner_cost"><span>560</span> грн/день</div>
+                        </div>
+                    </div>
+                    <div class="card_menu">
+                        <img src="img/menu2.jpg" alt="">
+                        <div class="card_option card_title">Поддержка веса</div>
+                        <div class="card_option card_description">В организации здорового питания главное — постепенность и правильный психологический настрой. Не стоит нацеливаться на жесткие ограничения и отказ от любимых продуктов.</div>
+                        <div class="card_option card_divider"></div>
+                        <div class="card_option card_price">
+                            <div class="inner_price">Цена:</div>
+                            <div class="inner_cost"><span>560</span> грн/день</div>
+                        </div>
+                    </div>
+                    <div class="card_menu">
+                        <img src="img/menu3.jpg" alt="">
+                        <div class="card_option card_title">Набор веса</div>
+                        <div class="card_option card_description">Как ни странно, но некоторых людей мучает проблема низкого веса. Решение есть: нужно правильно подобрать меню для набора веса. Ведь человек с недостаточным весом никогда не будет хорошо выглядеть, и на здоровье это тоже плохо сказывается. </div>
+                        <div class="card_option card_divider"></div>
+                        <div class="card_option card_price">
+                            <div class="inner_price">Цена:</div>
+                            <div class="inner_cost"><span>560</span> грн/день</div>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -105,6 +142,25 @@
             </div>
         </div>
     </footer>
+
+    <div class="modal hide">
+        <div class="modal_wrapper">
+            <div class="modal_content">
+                <form action="/server.php" method="post">
+                    <div data-close class="modal_close">&times;</div>
+                    <div class="modal_inner">
+                        <div class="modal_img"><img src="img/modal.jpg" alt=""></div>
+                        <div class="modal_form">
+                            <div class="modal_title">Получи свою скидку</div>
+                            <input required placeholder="Ваше имя" name="name" type="text" class="modal__input">
+                            <input required placeholder="Ваш номер телефона" name="phone" type="phone" class="modal__input">
+                            <button class="main_btn">Отправить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
