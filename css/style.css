@@ -397,6 +397,7 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
 
 .modal .modal_content {
   background-color: #fff;
+  position: relative;
 }
 
 .modal .modal_content form {
@@ -432,13 +433,6 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
      object-fit: cover;
 }
 
-.modal .modal_content form .modal_close {
-  position: absolute;
-  right: 14px;
-  cursor: pointer;
-  font-size: 42px;
-}
-
 .modal .modal_content form .modal_form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -453,12 +447,6 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
   margin-right: 72px;
 }
 
-.modal .modal_content form .modal_form .modal_title {
-  margin-top: 40px;
-  font-size: 28px;
-  font-weight: bold;
-}
-
 .modal .modal_content form .modal_form input {
   border: none;
   border-bottom: 1px solid;
@@ -468,5 +456,22 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
 .modal .modal_content form .modal_form button {
   font-size: 18px;
   padding: 16px;
+}
+
+.modal_close {
+  position: absolute;
+  right: 14px;
+  cursor: pointer;
+  font-size: 42px;
+}
+
+.modal_title {
+  margin-top: 40px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal_content-msg {
+  padding: 20px 40px;
 }
 /*# sourceMappingURL=style.css.map */

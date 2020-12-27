@@ -309,6 +309,7 @@ main{
     }
     .modal_content{
         background-color: #fff;
+        position: relative;
         form{
             display: flex;
             flex-direction: column;
@@ -327,22 +328,13 @@ main{
                     object-fit: cover;
                 }
             }
-            .modal_close{
-                position: absolute;
-                right: 14px;
-                cursor: pointer;
-                font-size: 42px;
-            }
+            
             .modal_form{
                 display: flex;
                 justify-content: space-evenly;
                 flex-direction: column;
                 margin-right: 72px;
-                .modal_title{
-                    margin-top: 40px;
-                    font-size: 28px;
-                    font-weight: bold;
-                }
+                
                 input{
                     border: none;
                     border-bottom: 1px solid;
@@ -355,4 +347,18 @@ main{
             }
         }
     }
+}
+.modal_close{
+    position: absolute;
+    right: 14px;
+    cursor: pointer;
+    font-size: 42px;
+}
+.modal_title{
+    margin-top: 40px;
+    font-size: 28px;
+    font-weight: bold;
+}
+.modal_content-msg{
+    padding: 20px 40px;
 }
