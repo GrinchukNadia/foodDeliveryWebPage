@@ -172,34 +172,52 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const low = new MenuItem(
-        'menu1.jpg',
-        'Меню снижение веса',
-        'Снижение веса',
-        'Диета сбалансирована и эффективна, главный ее результат – изменений пищевых привычек человека и нормализация метаболизма. Меню на неделю поможет разобраться в данной системе питания.',
-        8,
-        '.menu_items-inner'
-    );
-    const medium = new MenuItem(
-        'menu2.jpg',
-        'Меню поддержки веса',
-        'Поддержка веса',
-        'В организации здорового питания главное — постепенность и правильный психологический настрой. Не стоит нацеливаться на жесткие ограничения и отказ от любимых продуктов.',
-        12,
-        '.menu_items-inner'
-    );
-    const hight = new MenuItem(
-        'menu3.jpg',
-        'Меню набора веса',
-        'Набор веса',
-        'Как ни странно, но некоторых людей мучает проблема низкого веса. Решение есть: нужно правильно подобрать меню для набора веса. Ведь человек с недостаточным весом никогда не будет хорошо выглядеть, и на здоровье это тоже плохо сказывается. ',
-        19,
-        '.menu_items-inner'
-    );
+    const getResource = async (url) => {
+        const result = await fetch(url); 
 
-        low.appendCards();
-        medium.appendCards();
-        hight.appendCards();
+        if( !result.ok) {
+            throw new Error(`Не может получить данные от ${url}, статус: ${result.status}`);
+        }
+
+        return await result.json();
+    };
+
+    getResource('http://localhost:3000/menu')
+    .then( data => {
+        data.forEach( ({img, altimg, title, descr, price}) => {
+            new MenuItem(img, altimg, title, descr, price, '.menu_items-inner').appendCards();
+        });
+    });
+    
+
+    // const low = new MenuItem(
+    //     'menu1.jpg',
+    //     'Меню снижение веса',
+    //     'Снижение веса',
+    //     'Диета сбалансирована и эффективна, главный ее результат – изменений пищевых привычек человека и нормализация метаболизма. Меню на неделю поможет разобраться в данной системе питания.',
+    //     8,
+    //     '.menu_items-inner'
+    // );
+    // const medium = new MenuItem(
+    //     'menu2.jpg',
+    //     'Меню поддержки веса',
+    //     'Поддержка веса',
+    //     'В организации здорового питания главное — постепенность и правильный психологический настрой. Не стоит нацеливаться на жесткие ограничения и отказ от любимых продуктов.',
+    //     12,
+    //     '.menu_items-inner'
+    // );
+    // const hight = new MenuItem(
+    //     'menu3.jpg',
+    //     'Меню набора веса',
+    //     'Набор веса',
+    //     'Как ни странно, но некоторых людей мучает проблема низкого веса. Решение есть: нужно правильно подобрать меню для набора веса. Ведь человек с недостаточным весом никогда не будет хорошо выглядеть, и на здоровье это тоже плохо сказывается. ',
+    //     19,
+    //     '.menu_items-inner'
+    // );
+
+    //     low.appendCards();
+    //     medium.appendCards();
+    //     hight.appendCards();
 
 //Server Forms
 
@@ -240,16 +258,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 const formData = new FormData(form);
 
-                const json = JSON.stringify();
-
+                const json = JSON.stringify(Object.fromEntries(formData.entries()));
                 
-                const object = {};
-                formData.forEach( function(value, key){
-                    object[key] = value;
-                });
-
-                
-                postData('http://localhost:3000/requests', JSON.stringify(object))
+                postData('http://localhost:3000/requests', json)
                 .then(data => {
                     console.log(data);
                     showThanksModal(message.success);
