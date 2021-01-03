@@ -362,12 +362,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 current.textContent = slideIndex;
             }
         }
+        function clearNotDigit(str) {
+            return +str.replace(/\D/g, '');
+        }
 
         next.addEventListener('click', () => {
-            if (offset == +slideWidth.slice(0, slideWidth.length - 2) * (slides.length - 1)) {
+            if (offset == clearNotDigit(slideWidth) * (slides.length - 1)) {
                 offset = 0;
             } else {
-                offset += +slideWidth.slice(0, slideWidth.length - 2);
+                offset += clearNotDigit(slideWidth);
             }
             slidesField.style.transform = `translateX(-${offset}px)`;
 
@@ -382,9 +385,9 @@ window.addEventListener('DOMContentLoaded', () => {
         
         prev.addEventListener('click', () => {
             if (offset == 0) {
-                offset = +slideWidth.slice(0, slideWidth.length - 2) * (slides.length - 1);
+                offset = clearNotDigit(slideWidth) * (slides.length - 1);
             } else {
-                offset -= +slideWidth.slice(0, slideWidth.length - 2);
+                offset -= clearNotDigit(slideWidth);
             }
 
             slidesField.style.transform = `translateX(-${offset}px)`;
@@ -406,7 +409,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 slideIndex = slideTo;
 
-                offset = +slideWidth.slice(0, slideWidth.length - 2) * (slideTo- 1);
+                offset = clearNotDigit(slideWidth) * (slideTo- 1);
                 slidesField.style.transform = `translateX(-${offset}px)`;
 
                 addZeroSlider();
