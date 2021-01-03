@@ -268,16 +268,17 @@ main{
         justify-content: space-between;
     }
     .promote-right{
-        width: 30%;
+        width: 35%;
 
         p {
             display: block;
             margin-bottom: 20px;
         }
-        
     }
     .promote-left{
-        width: 60%;
+        width: 55%;
+    }
+    .promote-img{
 
         img{
             width: 100%;
@@ -290,6 +291,31 @@ main{
     list-style: disc;
     margin-left: 30px;
     margin-right: 30px;
+}
+.arrow {
+    width: 40px;
+    margin: 0 10px;
+    transform: translateY(10%);
+
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+.promote-slider{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.promote-slider_counter{
+    width: auto;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+
+    span{
+        font-size: 40px;
+    }
 }
 
 .footer{
