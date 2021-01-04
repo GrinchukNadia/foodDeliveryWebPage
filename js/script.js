@@ -124,7 +124,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const modalInterval = setTimeout(openModal, 6000);
+    const modalInterval = setTimeout(openModal, 600000);
     function showModalByScroll(){
         if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
             openModal();
@@ -132,7 +132,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    window.addEventListener('scroll', showModalByScroll);
+    // window.addEventListener('scroll', showModalByScroll);
 
 //Cards
     class MenuItem {

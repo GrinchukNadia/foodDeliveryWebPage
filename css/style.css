@@ -353,9 +353,13 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
   width: 55%;
 }
 
+.slider_promote .promote-img {
+  height: 400px;
+}
+
 .slider_promote .promote-img img {
   width: 100%;
-  height: 400px;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -376,6 +380,7 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
 .arrow img {
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 
 .promote-slider {
@@ -389,7 +394,17 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
   width: 100%;
 }
 
+.promote-slider-wrapper {
+  -webkit-box-shadow: 2px 2px 12px 4px rgba(83, 33, 24, 0.322);
+          box-shadow: 2px 2px 12px 4px rgba(83, 33, 24, 0.322);
+}
+
+.promote-slider-wrapper .promote-slider-inner {
+  height: 100%;
+}
+
 .promote-slider_counter {
+  margin: 20px 0 40px;
   width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -397,11 +412,52 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .promote-slider_counter span {
+  font-size: 30px;
+}
+
+.promote-slider_counter #current {
   font-size: 40px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 105px;
+  left: 0;
+  z-index: 15;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+}
+
+.dot {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  width: 30px;
+  height: 6px;
+  margin-right: 3px;
+  margin-left: 3px;
+  cursor: pointer;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: .5;
+  -webkit-transition: opacity .6s ease;
+  transition: opacity .6s ease;
 }
 
 .footer {
@@ -555,40 +611,280 @@ main .menu_items .menu_items-inner .card_menu .card_price .inner_cost span {
   padding: 20px 40px;
 }
 
-.carousel-indicators {
-  position: absolute;
-  right: 0;
-  bottom: 60px;
-  left: 0;
-  z-index: 15;
+.calorie_calc {
+  background: -webkit-gradient(linear, left top, right top, color-stop(40%, tomato), color-stop(40%, white));
+  background: linear-gradient(90deg, tomato 40%, white 40%);
+}
+
+.calorie_calc-inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-right: 15%;
-  margin-left: 15%;
-  list-style: none;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.dot {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 auto;
-          flex: 0 1 auto;
-  width: 30px;
-  height: 6px;
-  margin-right: 3px;
-  margin-left: 3px;
+.calc_left {
+  background-color: tomato;
+  padding: 30px 60px 30px 0;
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+
+.calc_left::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 0 20px 24px;
+  border-color: transparent transparent transparent tomato;
+  right: -23px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.calc_right {
+  padding: 30px 0px 30px 60px;
+  width: 50%;
+  height: 100%;
+}
+
+.calc_sex {
+  margin: 0 0 20px 0;
+}
+
+.calc_title {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.calc_sex-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.calc_sex-inner .male.main_btn {
+  padding-right: 78px;
+  padding-left: 78px;
+  font-size: 18px;
+}
+
+.calc_sex-inner .female.main_btn {
+  padding-right: 78px;
+  padding-left: 78px;
+  font-size: 18px;
+}
+
+.calc_param {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 20px 0;
+}
+
+.param {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.param input {
+  display: block;
+  border: 1px solid #e2563e;
+  background-color: tomato;
+  -webkit-box-shadow: 3px 6px 10px 4px #ffffff25 inset, 3px 6px 10px #0000000e;
+          box-shadow: 3px 6px 10px 4px #ffffff25 inset, 3px 6px 10px #0000000e;
+  padding: 12px 10px;
+  border-radius: 2px;
+}
+
+.param input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.658);
+}
+
+.param input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.658);
+}
+
+.param input::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.658);
+}
+
+.param input::placeholder {
+  color: rgba(255, 255, 255, 0.658);
+}
+
+.param input:focus {
+  background-color: white;
+}
+
+.calc_activitie-description {
+  color: #ffffff;
+}
+
+.calc_activitie-description span {
+  display: block;
+}
+
+.calc_activitie-option {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.calc_activitie-option::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 2px;
+  background-color: #2c2c2c;
+  top: 50%;
+  left: 22px;
+}
+
+.calc_activitie-option .activitie {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
-  background-color: #fff;
-  background-clip: padding-box;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  opacity: .5;
-  -webkit-transition: opacity .6s ease;
-  transition: opacity .6s ease;
+}
+
+.calc_activitie-option .activitie-circle {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: tomato;
+  -webkit-box-shadow: 0px 0px 0px 1px #2c2c2c;
+          box-shadow: 0px 0px 0px 1px #2c2c2c;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.activitie-circle.activitie-active {
+  background-color: #2c2c2c;
+  -webkit-box-shadow: 0px 0px 0px 8px tomato inset, 0px 0px 0px 1px #2c2c2c;
+          box-shadow: 0px 0px 0px 8px tomato inset, 0px 0px 0px 1px #2c2c2c;
+}
+
+.calc_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 60px 0 0 0;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.calc_propose .card_menu {
+  border: 1px solid #2c2c2c27;
+  margin: 20px;
+  -webkit-box-shadow: 3px 6px 10px #0000000e;
+          box-shadow: 3px 6px 10px #0000000e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.calc_propose .card_menu img {
+  display: block;
+  margin-top: -1px;
+  width: 35%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.calc_propose .card_menu .card_description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.calc_propose .card_menu .card_title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.calc_propose .card_menu .card_option {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.calc_propose .card_menu .card_price {
+  border-top: 1px solid #2c2c2c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 6px 0;
+}
+
+.calc_propose .card_menu .card_inner {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.calc_right-title {
+  color: #2c2c2c;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.calc_result-calorie {
+  font-size: 80px;
+  font-weight: bold;
+}
+
+.calc_result-calorie span {
+  font-size: 50px;
+  font-weight: normal;
+}
+
+.calc_result-descr {
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+.margin-title {
+  margin-top: 40px;
 }
 /*# sourceMappingURL=style.css.map */
