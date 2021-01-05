@@ -171,53 +171,49 @@
                             <div class="calc_title">Ваш пол</div>
                             <div class="calc_sex-inner">
                                 <div class="calc_sex-options">
-                                    <div class="male main_btn">Мужчина</div>
+                                    <div id="male" class="male main_btn calc_active">Мужчина</div>
                                 </div>
                                 <div class="calc_sex-options">
-                                    <div class="female main_btn">Женщина</div>
+                                    <div id="female" class="female main_btn">Женщина</div>
                                 </div>
                             </div>
                         </div>
                         <div class="calc_param">
-                            <div class="param calc_age"><input type="text" name="age" placeholder="Ваш возраст"></div>
-                            <div class="param calc_weight"><input type="text" name="weight" placeholder="Ваш рост"></div>
-                            <div class="param calc_height"><input type="text" name="height" placeholder="Ваш вес"></div>
+                            <div class="param calc_age"><input id="age" type="text" name="age" placeholder="Ваш возраст"></div>
+                            <div class="param calc_weight"><input id="weight" type="text" name="weight" placeholder="Ваш рост"></div>
+                            <div class="param calc_height"><input id="height" type="text" name="height" placeholder="Ваш вес"></div>
                         </div>
                         <div class="calc_activitie">
                             <div class="calc_title">Уровень активности</div>
                             <div class="calc_activitie-description">
-                                <b>Низкая: </b>физическая активность соответствует состоянию покоя, например, когда человек спит, или лежа читает, или смотрит телепередачи.
-                                <!-- <span>Умеренная </span>физическая активность который несколько повышает частоту сердечных сокращений, например, быстрая ходьба, плавании, езде на велосипеде по ровной поверхности, танцах.
-                                <span>Средняя </span>физическая активность занятие спортом несколько дней в неделю в спортзале или дома, легкие пробежки несколько раз в неделю, активный вид отдыха.
-                                <span>Высокая </span>физическая активность регулярная и проффесиональная не менее 5-6 раз в неделю по несколько часов. Интенсивные занятия, которые значительно повышают сердечный ритм. -->
                             </div>
                             <div class="calc_activitie-option">
                                 <div class="activitie">
-                                    <div class="activitie-circle activitie-active"></div>
-                                    <div class="activitie-name">Низкая</div>
+                                    <div data-ratio="1.2" class="activitie-circle activitie-active"></div>
+                                    <p class="activitie-name">Низкая</p>
                                 </div>
                                 <div class="activitie">
-                                    <div class="activitie-circle"></div>
-                                    <div class="activitie-name">Умеренная</div>
+                                    <div data-ratio="1.375" class="activitie-circle"></div>
+                                    <p class="activitie-name">Умеренная</p>
                                 </div>
                                 <div class="activitie">
-                                    <div class="activitie-circle"></div>
-                                    <div class="activitie-name">Средняя</div>
+                                    <div data-ratio="1.55" class="activitie-circle"></div>
+                                    <p class="activitie-name">Средняя</p>
                                 </div>
                                 <div class="activitie">
-                                    <div class="activitie-circle"></div>
-                                    <div class="activitie-name">Высокая</div>
+                                    <div data-ratio="1.725" class="activitie-circle"></div>
+                                    <p class="activitie-name">Высокая</p>
                                 </div>
                             </div>
                         </div>
                         <div class="calc_btn">
-                            <div class="main_btn"> Результат</div>
+                            <div id="calorie_result" class="main_btn"> Результат</div>
                         </div>
                     </div>
                     <div class="calc_right">
                         <div class="calc_result">
                             <div class="calc_right-title">Ваш результат</div>
-                            <div class="calc_result-calorie">1890<span>Ккал</span></div>
+                            <div class="calc_result-calorie"><span>1890</span> Ккал</div>
                             <div class="calc_result-descr">Рекомендуемая норма каллорий <b>в день</b></div>
                         </div>
                         <div class="calc_propose">

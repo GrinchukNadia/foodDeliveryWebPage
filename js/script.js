@@ -132,7 +132,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // window.addEventListener('scroll', showModalByScroll);
+    window.addEventListener('scroll', showModalByScroll);
 
 //Cards
     class MenuItem {
@@ -221,199 +221,333 @@ window.addEventListener('DOMContentLoaded', () => {
 
 //Server Forms
 
-        const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll('form');
 
-        const message = {
-            loading: 'img/form/spinner.svg',
-            success: 'Спасибо! Скоро мы с вами свяжемся.',
-            failure: 'Что-то пошло не так'
-        };
-         
-        forms.forEach( item => {
-            bindPostData(item);
-        });
+    const message = {
+        loading: 'img/form/spinner.svg',
+        success: 'Спасибо! Скоро мы с вами свяжемся.',
+        failure: 'Что-то пошло не так'
+    };
+        
+    forms.forEach( item => {
+        bindPostData(item);
+    });
 
-        const postData = async (url, data) => {
-          const result = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: data
-          }); 
-          return await result.json();
-        };
+    const postData = async (url, data) => {
+        const result = await fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: data
+        }); 
+        return await result.json();
+    };
 
-        function bindPostData(form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
+    function bindPostData(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-                const statusMessage = document.createElement('img');
-                statusMessage.src = message.loading;
-                statusMessage.style.cssText = `
-                    display: block;
-                    margin: 0 auto;
-                `;
-                form.insertAdjacentElement('beforeend', statusMessage);
-
-                const formData = new FormData(form);
-
-                const json = JSON.stringify(Object.fromEntries(formData.entries()));
-                
-                postData('http://localhost:3000/requests', json)
-                .then(data => {
-                    console.log(data);
-                    showThanksModal(message.success);
-                    statusMessage.remove();
-                }).catch(() => {
-                    showThanksModal(message.failure);
-                }).finally(() => {
-                    form.reset();
-                });
-            });
-        }
-
-        function showThanksModal(message) {
-            const prevModalDialog = document.querySelector('.modal_wrapper');
-
-            prevModalDialog.classList.add('hide');
-            openModal();
-
-            const thanksModal = document.createElement('div');
-            thanksModal.classList.add('modal_wrapper');
-            thanksModal.innerHTML = `
-                <div class="modal_content modal_content-msg">
-                    <div data-close class="modal_close">&times;</div>
-                    <div class="modal_title">${message}</div>
-                </div>
+            const statusMessage = document.createElement('img');
+            statusMessage.src = message.loading;
+            statusMessage.style.cssText = `
+                display: block;
+                margin: 0 auto;
             `;
+            form.insertAdjacentElement('beforeend', statusMessage);
 
-            document.querySelector('.modal').append(thanksModal);
+            const formData = new FormData(form);
 
-            setTimeout(() => {
-                thanksModal.remove();
-                prevModalDialog.classList.add('show');
-                prevModalDialog.classList.remove('hide');
-                closeModal();
-            }, 4000);
-        }
+            const json = JSON.stringify(Object.fromEntries(formData.entries()));
+            
+            postData('http://localhost:3000/requests', json)
+            .then(data => {
+                console.log(data);
+                showThanksModal(message.success);
+                statusMessage.remove();
+            }).catch(() => {
+                showThanksModal(message.failure);
+            }).finally(() => {
+                form.reset();
+            });
+        });
+    }
 
-        fetch('db.json')
-        .then(data => data.json())
-        .then(res => console.log(res));
+    function showThanksModal(message) {
+        const prevModalDialog = document.querySelector('.modal_wrapper');
+
+        prevModalDialog.classList.add('hide');
+        openModal();
+
+        const thanksModal = document.createElement('div');
+        thanksModal.classList.add('modal_wrapper');
+        thanksModal.innerHTML = `
+            <div class="modal_content modal_content-msg">
+                <div data-close class="modal_close">&times;</div>
+                <div class="modal_title">${message}</div>
+            </div>
+        `;
+
+        document.querySelector('.modal').append(thanksModal);
+
+        setTimeout(() => {
+            thanksModal.remove();
+            prevModalDialog.classList.add('show');
+            prevModalDialog.classList.remove('hide');
+            closeModal();
+        }, 4000);
+    }
+
+    fetch('db.json')
+    .then(data => data.json())
+    .then(res => console.log(res));
 
 // slider
-        const slides = document.querySelectorAll(".promote-img"),
-              slider = document.querySelector('.promote-slider'),
-              prev = document.querySelector('.prev-arrow'),
-              next = document.querySelector('.next-arrow'),
-              total = document.querySelector('#total'),
-              current = document.querySelector('#current'),
-              slidesWrapper = document.querySelector('.promote-slider-wrapper'),
-              slidesField = document.querySelector('.promote-slider-inner'),
-              slideWidth = window.getComputedStyle(slidesWrapper).width;
+    const slides = document.querySelectorAll(".promote-img"),
+            slider = document.querySelector('.promote-slider'),
+            prev = document.querySelector('.prev-arrow'),
+            next = document.querySelector('.next-arrow'),
+            total = document.querySelector('#total'),
+            current = document.querySelector('#current'),
+            slidesWrapper = document.querySelector('.promote-slider-wrapper'),
+            slidesField = document.querySelector('.promote-slider-inner'),
+            slideWidth = window.getComputedStyle(slidesWrapper).width;
 
-        let slideIndex = 1;
-        let offset = 0;
+    let slideIndex = 1;
+    let offset = 0;
 
-        if(slides.length < 10) {
-            total.textContent = ` 0${slides.length} `;
-            current.textContent = ` 0${slideIndex} `;
+    if(slides.length < 10) {
+        total.textContent = ` 0${slides.length} `;
+        current.textContent = ` 0${slideIndex} `;
+    } else {
+        total.textContent = slides.length;
+        current.textContent = slideIndex;
+    }
+
+    slidesField.style.width = 100 * slides.length + '%';
+    slidesField.style.display = 'flex';
+    slidesField.style.transition = '0.5s all';
+
+    slidesWrapper.style.overflow = 'hidden';
+
+    slider.style.position = 'relative';
+    const indicators = document.createElement('ol'),
+            dots = [];
+    indicators.classList.add('carousel-indicators');
+    slider.append(indicators);
+
+    for(let i = 0; i < slides.length; i++) {
+        const dot = document.createElement('li');
+        dot.classList.add('dot');
+        dot.setAttribute('data-slide-to', i + 1);
+        if (i == 0) {
+            dot.style.opacity = 1;
+        }
+        indicators.append(dot);
+        dots.push(dot);
+    }
+
+    slides.forEach( slide => {
+        slide.style.width = slideWidth;
+    });
+
+    function currentDot() {
+        dots.forEach(dot => dot.style.opacity = '0.5');
+        dots[slideIndex -1].style.opacity = 1;
+    }
+    function addZeroSlider() {
+        if ( slides.length < 10) {
+            current.textContent = ` 0${slideIndex}`;
         } else {
-            total.textContent = slides.length;
             current.textContent = slideIndex;
         }
+    }
+    function clearNotDigit(str) {
+        return +str.replace(/\D/g, '');
+    }
 
-        slidesField.style.width = 100 * slides.length + '%';
-        slidesField.style.display = 'flex';
-        slidesField.style.transition = '0.5s all';
+    next.addEventListener('click', () => {
+        if (offset == clearNotDigit(slideWidth) * (slides.length - 1)) {
+            offset = 0;
+        } else {
+            offset += clearNotDigit(slideWidth);
+        }
+        slidesField.style.transform = `translateX(-${offset}px)`;
 
-        slidesWrapper.style.overflow = 'hidden';
-
-        slider.style.position = 'relative';
-        const indicators = document.createElement('ol'),
-              dots = [];
-        indicators.classList.add('carousel-indicators');
-        slider.append(indicators);
-
-        for(let i = 0; i < slides.length; i++) {
-            const dot = document.createElement('li');
-            dot.classList.add('dot');
-            dot.setAttribute('data-slide-to', i + 1);
-            if (i == 0) {
-                dot.style.opacity = 1;
-            }
-            indicators.append(dot);
-            dots.push(dot);
+        if (slideIndex == slides.length) {
+            slideIndex = 1;
+        } else {
+            slideIndex++;
+        }
+        addZeroSlider();
+        currentDot();
+    });
+    
+    prev.addEventListener('click', () => {
+        if (offset == 0) {
+            offset = clearNotDigit(slideWidth) * (slides.length - 1);
+        } else {
+            offset -= clearNotDigit(slideWidth);
         }
 
-        slides.forEach( slide => {
-            slide.style.width = slideWidth;
-        });
+        slidesField.style.transform = `translateX(-${offset}px)`;
 
-        function currentDot() {
-            dots.forEach(dot => dot.style.opacity = '0.5');
-            dots[slideIndex -1].style.opacity = 1;
-        }
-        function addZeroSlider() {
-            if ( slides.length < 10) {
-                current.textContent = ` 0${slideIndex}`;
-            } else {
-                current.textContent = slideIndex;
-            }
-        }
-        function clearNotDigit(str) {
-            return +str.replace(/\D/g, '');
-        }
-
-        next.addEventListener('click', () => {
-            if (offset == clearNotDigit(slideWidth) * (slides.length - 1)) {
-                offset = 0;
-            } else {
-                offset += clearNotDigit(slideWidth);
-            }
-            slidesField.style.transform = `translateX(-${offset}px)`;
-
-            if (slideIndex == slides.length) {
-                slideIndex = 1;
-            } else {
-                slideIndex++;
-            }
-            addZeroSlider();
-            currentDot();
-        });
         
-        prev.addEventListener('click', () => {
-            if (offset == 0) {
-                offset = clearNotDigit(slideWidth) * (slides.length - 1);
-            } else {
-                offset -= clearNotDigit(slideWidth);
-            }
+        if (slideIndex == 1) {
+            slideIndex = slides.length;
+        } else {
+            slideIndex--;
+        }
 
+        addZeroSlider();
+        currentDot();
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            const slideTo = e.target.getAttribute('data-slide-to');
+
+            slideIndex = slideTo;
+
+            offset = clearNotDigit(slideWidth) * (slideTo- 1);
             slidesField.style.transform = `translateX(-${offset}px)`;
-
-            
-            if (slideIndex == 1) {
-                slideIndex = slides.length;
-            } else {
-                slideIndex--;
-            }
 
             addZeroSlider();
             currentDot();
         });
+    });
 
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const slideTo = e.target.getAttribute('data-slide-to');
+//Calculator
+    const resultCalorie = document.querySelector('.calc_result-calorie span');
+    let sex, height, weight, age, ratio;
 
-                slideIndex = slideTo;
+    if(localStorage.getItem('sex')){
+        sex = localStorage.getItem('sex');
+    } else {
+        sex = 'male';
+        localStorage.setItem('sex', 'male');
+    }
+    if(localStorage.getItem('ratio')){
+        ratio = localStorage.getItem('ratio');
+    } else {
+        ratio = 1.2;
+        localStorage.setItem('ratio', 1.2);
+    }
 
-                offset = clearNotDigit(slideWidth) * (slideTo- 1);
-                slidesField.style.transform = `translateX(-${offset}px)`;
+    function initLocalSettings(selector, activeClass) {
+        const elements = document.querySelectorAll(selector);
 
-                addZeroSlider();
-                currentDot();
+        elements.forEach(elem => {
+            elem.classList.remove(activeClass);
+            if(elem.getAttribute('id') === localStorage.getItem('sex')) {
+                elem.classList.add(activeClass);
+            }
+            if(elem.getAttribute('data-ratio') === localStorage.getItem('ratio')) {
+                elem.classList.add(activeClass);
+                appendActivitieInfo();
+            }
+        });
+    }
+    initLocalSettings('.calc_activitie-option div', 'activitie-active');
+    initLocalSettings('.calc_sex-inner div', 'calc_active');
+
+    function calcTotal() {
+        if(!sex || !height || !weight || !age || !ratio) {
+            resultCalorie.textContent = '0';
+            return;
+        }
+
+        if(sex === 'female') {
+            resultCalorie.textContent = Math.round((447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age)) * ratio);
+        } else {
+            resultCalorie.textContent = Math.round((88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)) * ratio);
+        }
+    }
+    calcTotal();
+
+    function getStaticInformation(parentSelector, activeClass) {
+        const elements = document.querySelectorAll(`${parentSelector} div div`);
+
+        elements.forEach(elem => {
+            elem.addEventListener('click', (event) => {
+                if(event.target.getAttribute('data-ratio')) {
+                    ratio = +event.target.getAttribute('data-ratio');
+                    localStorage.setItem('ratio', +event.target.getAttribute('data-ratio'));
+                } else {
+                    sex = event.target.getAttribute('id');
+                    localStorage.setItem('sex', event.target.getAttribute('id'));
+                }
+    
+                appendActivitieInfo();
+                console.log(ratio, sex);
+    
+                elements.forEach(el => {
+                    el.classList.remove(activeClass);
+                });
+                event.target.classList.add(activeClass);
             });
         });
+    }
+    getStaticInformation('.calc_sex-inner', 'calc_active');
+    getStaticInformation('.calc_activitie-option', 'activitie-active');
+    appendActivitieInfo();
+
+    function appendActivitieInfo() {
+        const description = document.querySelector('.calc_activitie-description');
+        if(ratio === 1.725) {
+            description.innerHTML = `
+                <div><b>Высокая: </b>регулярная и проффесиональная физическая активность не менее 5-6 раз в неделю по несколько часов. Интенсивные занятия, которые значительно повышают сердечный ритм.</div>
+            `;
+        } else if(ratio === 1.375) {
+            description.innerHTML = `
+            <div><b>Умеренная: </b>нерегулярная физическая активность которая несколько повышает частоту сердечных сокращений. Например, быстрая ходьба, плавание, езда на велосипеде по ровной поверхности, танцы.</div>
+            `;
+        } else if(ratio === 1.55) {
+            description.innerHTML = `
+            <div><b>Средняя: </b>частая физическая активность несколько дней в неделю, занятие спортом в спортзале или дома, легкие пробежки, активный вид отдыха.</div>
+            `;
+        } else {
+            description.innerHTML = `
+                <div><b>Низкая: </b>физическая активность соответствует состоянию покоя, например, когда человек спит, или лежа читает, или смотрит телепередачи.</div>
+            `;
+        }
+    }
+
+    function getDynamicInformation(selector) {
+        const input = document.querySelector(selector);
+
+        if (input.value.match(/\D/g)) {
+            input.style.border = '1px solid red';
+        } else {
+            input.style.border = 'none';
+        }
+
+        input.addEventListener('input', () => {
+            switch(input.getAttribute('id')) {
+                case 'age':
+                    age = +input.value;
+                    break;
+                case 'weight':
+                    weight = +input.value;
+                    break;
+                case 'height':
+                    height = +input.value;
+                    break;
+            }
+            blockNotDigit(input);
+        });
+    }
+    function blockNotDigit(input) {
+        input.value = input.value.replace(/[^\d]/g, '');
+    }
+    
+    
+    const buttonResult = document.querySelector('#calorie_result');
+
+    buttonResult.addEventListener('click', calcTotal);
+
+    getDynamicInformation('#age');
+    getDynamicInformation('#weight');
+    getDynamicInformation('#height');
+
 });

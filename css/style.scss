@@ -305,14 +305,24 @@ main{
     justify-content: space-between;
 
     .male.main_btn{
+        background-color: tomato;
+        border: 1px solid rgb(226, 86, 62);
         padding-right: 78px;
         padding-left: 78px;
         font-size: 18px;
+        box-shadow: 1px 1px 10px #0000000e;
     }
     .female.main_btn{
+        background-color: tomato;
+        border: 1px solid rgb(226, 86, 62);
         padding-right: 78px;
         padding-left: 78px;
         font-size: 18px;
+        box-shadow: 1px 1px 10px #0000000e;
+    }
+    .main_btn.calc_active{
+        background-color: #2c2c2c;
+        box-shadow: 1px 1px 10px #0000000e;
     }
 }
 .calc_param{
@@ -327,7 +337,7 @@ main{
         display: block;
         border: 1px solid rgb(226, 86, 62);
         background-color: tomato;
-        box-shadow: 3px 6px 10px 4px #ffffff25 inset,
+        box-shadow: 3px 6px 10px 4px #ffffff18 inset,
                     3px 6px 10px #0000000e;
         padding: 12px 10px;
         border-radius: 2px;
@@ -437,11 +447,11 @@ main{
     margin-bottom: 15px;
 }
 .calc_result-calorie{
-    font-size: 80px;
-    font-weight: bold;
+    font-size: 50px;
+    font-weight: normal;
     span{
-        font-size: 50px;
-        font-weight: normal;
+        font-size: 80px;
+        font-weight: bold;
     }
 }
 .calc_result-descr{
