@@ -170,6 +170,24 @@ window.addEventListener('DOMContentLoaded', () => {
             `;
             this.parentSelector.append(element);
         }
+        appendPurpose() {
+            const anotherElement = document.createElement('div');
+            this.anotherElement = 'card_menu';
+            anotherElement.classList.add(this.anotherElement);
+            anotherElement.innerHTML += `
+                <img src="img/${this.img}" alt="${this.alt}">
+                <div class="card_description">
+                    <div class="card_option card_title">${this.title}</div>
+                    <div class="card_option card_description">${this.description}</div>
+                    <div class="card_option card_divider"></div>
+                    <div class="card_option card_price">
+                        <div class="card_inner inner_price">Цена:</div>
+                        <div class="card_inner inner_cost"><span>${this.price}</span> грн/день</div>
+                    </div>
+                </div>
+            `;
+            this.parentSelector.append(anotherElement);
+        }
     }
 
     const getResource = async (url) => {
@@ -188,6 +206,7 @@ window.addEventListener('DOMContentLoaded', () => {
             new MenuItem(img, altimg, title, descr, price, '.menu_items-inner').appendCards();
         });
     });
+    
     
 
     // const low = new MenuItem(
@@ -479,7 +498,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
     
                 appendActivitieInfo();
-                console.log(ratio, sex);
     
                 elements.forEach(el => {
                     el.classList.remove(activeClass);
@@ -490,23 +508,27 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     getStaticInformation('.calc_sex-inner', 'calc_active');
     getStaticInformation('.calc_activitie-option', 'activitie-active');
-    appendActivitieInfo();
 
     function appendActivitieInfo() {
         const description = document.querySelector('.calc_activitie-description');
+        ratio = +localStorage.getItem('ratio');
         if(ratio === 1.725) {
             description.innerHTML = `
                 <div><b>Высокая: </b>регулярная и проффесиональная физическая активность не менее 5-6 раз в неделю по несколько часов. Интенсивные занятия, которые значительно повышают сердечный ритм.</div>
             `;
-        } else if(ratio === 1.375) {
+        }
+        
+        if(ratio === 1.375) {
             description.innerHTML = `
             <div><b>Умеренная: </b>нерегулярная физическая активность которая несколько повышает частоту сердечных сокращений. Например, быстрая ходьба, плавание, езда на велосипеде по ровной поверхности, танцы.</div>
             `;
-        } else if(ratio === 1.55) {
+        } 
+        if(ratio === 1.55) {
             description.innerHTML = `
             <div><b>Средняя: </b>частая физическая активность несколько дней в неделю, занятие спортом в спортзале или дома, легкие пробежки, активный вид отдыха.</div>
             `;
-        } else {
+        } 
+        if(ratio === 1.2) {
             description.innerHTML = `
                 <div><b>Низкая: </b>физическая активность соответствует состоянию покоя, например, когда человек спит, или лежа читает, или смотрит телепередачи.</div>
             `;
@@ -545,6 +567,22 @@ window.addEventListener('DOMContentLoaded', () => {
     const buttonResult = document.querySelector('#calorie_result');
 
     buttonResult.addEventListener('click', calcTotal);
+    buttonResult.addEventListener('click', () => {
+        getResource('http://localhost:3000/menu')
+            .then( () => {
+                let innerDiv = document.querySelector('.card_propose-inner');
+                if(resultCalorie.textContent < 2600) {
+                    innerDiv.innerHTML = '';
+                    new MenuItem("menu3.jpg", "Меню набора веса", "Набор веса", "Как ни странно, но некоторых людей мучает проблема низкого веса. Решение есть: нужно правильно подобрать меню для набора веса. Ведь человек с недостаточным весом никогда не будет хорошо выглядеть, и на здоровье это тоже плохо сказывается.", 19, '.card_propose-inner').appendPurpose();
+                } else if (resultCalorie.textContent > 2601 && resultCalorie.textContent < 3000){
+                    innerDiv.innerHTML = '';
+                    new MenuItem("menu2.jpg", "Меню поддержки веса", "Поддержка веса", "В организации здорового питания главное — постепенность и правильный психологический настрой. Не стоит нацеливаться на жесткие ограничения и отказ от любимых продуктов.", 12, '.card_propose-inner').appendPurpose();
+                } else {
+                    innerDiv.innerHTML = '';
+                    new MenuItem("menu1.jpg", "Меню снижение веса", "Снижение веса", "Диета сбалансирована и эффективна, главный ее результат – изменений пищевых привычек человека и нормализация метаболизма. Меню на неделю поможет разобраться в данной системе питания.",  8, '.card_propose-inner').appendPurpose();
+                }
+            });
+    });
 
     getDynamicInformation('#age');
     getDynamicInformation('#weight');
