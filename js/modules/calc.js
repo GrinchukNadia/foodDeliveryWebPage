@@ -1,3 +1,6 @@
+import {getResource} from '../services/services';
+import {MenuItem} from '../modules/cards';
+
 function calc() {
     //Calculator
     const resultCalorie = document.querySelector('.calc_result-calorie span');
@@ -152,4 +155,4 @@ function calc() {
     getDynamicInformation('#height');
 }
 
-module.exports = calc;
+export default calc;
